@@ -5,8 +5,8 @@ import useAppContext from '../../Context'
 const WAButton = styled.a`
     position: fixed;
     z-index: 3;
-    bottom: 7vh;
-    right: 5vw;
+    bottom: calc(5vh + 1rem);
+    right: calc(5vw + 2rem);
     font-size: 4rem;
     color: white;
     width: 5rem;

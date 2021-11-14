@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
+import useAppContext from '../../Context'
 import Logo from "./CoolLogo.png"
 
 const NavBar = () => {
     const [IsPhone, setIsPhone] = useState(false)
     const [WindowWidth, setWindowWidth] = useState(window.innerWidth)
+    const {productsCount} = useAppContext()
 
     const ReSizeWindow = () => {
         setWindowWidth(window.innerWidth)
@@ -28,8 +30,8 @@ const NavBar = () => {
             </Link>
 
             <section>
-            <Link to="/carrito" className="cart-button">
-                <i className="fas fa-shopping-cart"></i> (0)
+            <Link to={productsCount() > 0 ? "/carrito" : "/green-ocean-coffee"} className="cart-button">
+                <i className="fas fa-shopping-cart"></i> ({productsCount()})
                 </Link>
             <Link to="/reservas" className="styled-button DarkBack">¡Reserva ya!</Link>
             </section>

@@ -11,6 +11,7 @@ import WhatsAppButton from './Components/WhatsAppButton/WhatsAppButton';
 import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
 import GOContaniner from './Containers/GreenOcean/GOContaniner';
 import { AppContextProvider } from './Context';
+import CartContainer from './Containers/CartContainer/CartContainer';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
@@ -39,6 +40,9 @@ function App() {
         </Route>
         <Route exact path="/green-ocean-coffee">
           <GOContaniner/>
+        </Route>
+        <Route exact path="/carrito">
+          <CartContainer/>
         </Route>
       </Switch>
       <Footer/>

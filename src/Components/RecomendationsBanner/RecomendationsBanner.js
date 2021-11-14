@@ -59,7 +59,7 @@ const Banner = styled.div`
 
 const RecomendationsBanner = () => {
     return <Banner>
-            <h1>Nuestros huéspedes son <span className="Special-Span">prioridad</span>.</h1>
+            <h1>"Nuestros huéspedes son prioridad."</h1>
             <section>
                 {
                     Data && Data.map((data,idx) => {
