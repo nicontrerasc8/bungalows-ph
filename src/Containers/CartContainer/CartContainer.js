@@ -1,10 +1,14 @@
-import React from 'react'
+
+import React, { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import styled from 'styled-components'
 import useAppContext from '../../Context'
+
 
 const Container = styled.div`
     margin-top: 10vh;
     padding: 1rem 5%;
+    min-height: 80vh;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -12,43 +16,100 @@ const Container = styled.div`
     h2{
         font-size: calc(2vw + 2vh + 1rem);
     }
-
-    section{
-        width: clamp(280px, 50%,50%);
-        background: grey;
-        table{
-            display: flex;
-            flex-direction: column;
-            margin-top: 50px;
-            border-radius: .5rem;
-            background-color: rgb(221, 223, 255);
-            box-shadow: 0 0 5px 1px rgba(0, 0, 10, 0.5);
-            margin-left: 15%;
-            width: 70%;
-            margin-right: 15%;
-            font-family: "Archivo Black", sans-serif;
-          }
+    table{
+        display: flex;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+        grid-gap: 1rem;
+        color: #DAFDFC;
+        justify-content: center;
+        article{
+                padding: 10px;
+                border-radius: 10px;
+                background-color: #01091f;
+                display: flex;
+                flex-direction: column;
+                width: clamp(280px, 33%,33%);
+            section{
+                border-radius: 10px;
+                background-color: #01091f;
+                display: flex;
+                flex-wrap: wrap;
+                padding: 10px;
+                grid-gap: 10px;
+                justify-content: center;
+                img{
+                    border-radius: 5px;
+                    box-shadow: 0 0 4px #DAFDFC;
+                    width: clamp(170px, 20%, 20%);
+                }
+                div{
+                    display: flex;
+                    flex-direction: column;
+                    text-align: left;
+                    justify-content: center;
+                    font-size: calc(15px + 1vh);
+                    grid-gap: 1rem;
+                }
+            }
+        }
     }
+`
+
+const ProductHeader = styled.span`
+    background-color: #01091f;
+    font-size: calc(15px + 2vh);
+    padding: 10px;
+    text-align: center;
 
 `
 
+const SendToWhatsAppContainer = ({arreglo}) => {
+    return <div>
+        <a href={`https://api.whatsapp.com/send?phone=51949161510&text=${arreglo}`} className="styled-button" target="_blank" 
+                   >Envía tu orden</a>
+    </div>
+} 
 const CartContainer = () => {
 
-    const {Pedidos} = useAppContext()
-    console.log(Pedidos)
+    const [Whats, setWhats] = useState(false)
+    const {Pedidos, setPedidos} = useAppContext()
+
+    const [ArrayString, setArrayString] = useState("")
+
+
+
+
+
+
 
     return <Container>
+
            <h2>Carrito <i className="fas fa-shopping-cart"></i> </h2>
-           <section>
-           {
-               Pedidos.length > 0 && Pedidos.map((pedido, idx) => {
-                   return <p key={idx}>
-                       {pedido.producto.product}
-                       {pedido.quantity}
-                       </p>
-               }) 
+           { Pedidos.length > 0 ?
+               <><table>
+               {
+                   Pedidos.length > 0 && Pedidos.map((pedido, idx) => {
+                       return <article key={idx}>
+                           <ProductHeader>{pedido.producto.product} </ProductHeader><section>
+                            <img src={pedido.producto.img}/>
+                            <div>
+                                <span>Precio: s/. {Math.ceil(pedido.producto.precio)}</span>
+                                <span>Cantidad ordenada: {pedido.quantity} unidades </span>
+                                <span>Precio total: s/. {Math.ceil(pedido.quantity * pedido.producto.precio)}</span>
+                            </div>
+                           </section>
+                       </article> 
+                   }) 
+               }
+               </table>
+               <a href={`https://api.whatsapp.com/send?phone=51949161510&text=${"Hola! Vengo de la web de bungalows PH, me gustaría ordenar:" + JSON.stringify(Pedidos)}`} className="styled-button" target="_blank" 
+                   >Envía tu orden</a>
+                   </> 
+                   
+                   : 
+                   <Link to="/green-ocean-coffee" className="styled-button">Ir a comprar</Link>
            }
-           </section>
         </Container>
 }
 

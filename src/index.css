@@ -1,10 +1,10 @@
 
-@import url('https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital@1&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Balsamiq+Sans&family=Kanit:wght@500&family=Prompt&family=Secular+One&display=swap');
 *{
   text-decoration: none;
   outline: none;
+  font-family: 'Kanit', sans-serif;
+  font-weight: 500;
   text-underline-offset: none;
 }
 *::after{
@@ -12,19 +12,11 @@
   margin: 0;
   box-sizing: border-box;
 }
-input{
-  font-family: 'Source Sans Pro', sans-serif;
-}
-button{
-  font-family: 'Source Sans Pro', sans-serif;
-}
+
 body {
   margin: 0;
   overflow-x: hidden;
-  font-family: 'Source Sans Pro', sans-serif;
   padding: 0;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   background-color: #DAFDFC;
   color: #191f2e;
 }
@@ -32,10 +24,48 @@ body {
   width: 1rem;
 }
 ::-webkit-scrollbar-track {
-  background: transparent;
+  background: #191f2e;
 }
 ::-webkit-scrollbar-thumb {
-  background: #191f2e;
+  background: #0C3255;
   transition: 1s;
   border-radius: 20px;
+  border: 3px solid #DAFDFC;
+}
+
+.custom-shape-divider-bottom-1639249948 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1639249948 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 100px;
+}
+
+.custom-shape-divider-bottom-1639249948 .shape-fill {
+  fill: #191f2e;
+}
+.custom-shape-divider-bottom-1639249948 .shape-fill-2{
+  fill: #0C3255;
+}
+
+@media (max-width: 767px) {
+  .custom-shape-divider-bottom-1639250482 svg {
+      width: calc(100% + 1.3px);
+      height: 56px;
+  }
+}
+@media (max-width: 767px) {
+  .custom-shape-divider-bottom-1639250466 svg {
+      width: calc(100% + 1.3px);
+      height: 56px;
+  }
 }

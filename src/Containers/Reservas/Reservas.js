@@ -45,7 +45,7 @@ const ReservaDiv = styled.div`
             color: rgb(0,0,30);
         }
         input:focus{
-            background-color: rgb(0,0,30);
+            background-image:linear-gradient(to left, #01091f, #0c3255);
             color: #c2fffd;
             border-bottom: 3px solid grey;
             &:placeholder{
@@ -54,7 +54,6 @@ const ReservaDiv = styled.div`
         }
 
         div{
-            font-family: 'Source Sans Pro', sans-serif;
             width: clamp(270px, 50%, 50%);
             font-size: calc(1vh + 1rem);
             background: #c2fffd;
@@ -80,7 +79,7 @@ const ReservaDiv = styled.div`
                 font-size: calc(1vh + 1rem);
             }
             button:hover{
-                background-color: rgb(0,0,30);
+                background-image:linear-gradient(to left, #01091f, #0c3255);
                 color: #c2fffd;
             }
         }

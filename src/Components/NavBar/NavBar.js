@@ -30,8 +30,9 @@ const NavBar = () => {
             </Link>
 
             <section>
-            <Link to={productsCount() > 0 ? "/carrito" : "/green-ocean-coffee"} className="cart-button">
-                <i className="fas fa-shopping-cart"></i> ({productsCount()})
+            <Link to={productsCount() > 0 ? "/carrito" : "/tienda"} className="cart-button">
+            <i class="fas fa-shopping-cart"></i>
+                {/* ({productsCount()}) */}
                 </Link>
             <Link to="/reservas" className="styled-button DarkBack">¡Reserva ya!</Link>
             </section>

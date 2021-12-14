@@ -17,7 +17,7 @@ const Data = [
 ]
 
 const Banner = styled.div`
-    background-color: #01091f;
+    background-image: linear-gradient(to left, #01091f, #0c3255);
     color: #DAFDFC;
     padding: 20px 5vw;
     display: flex;
@@ -26,7 +26,6 @@ const Banner = styled.div`
     justify-content: center;
     text-align: center;
         h1{
-            font-family: 'Roboto Mono', monospace;
             font-size: calc(20px + 1vh + 1vw);
             margin-bottom: 30px;
         }
@@ -37,7 +36,7 @@ const Banner = styled.div`
             justify-content: center;
             article{
                 width: clamp(280px, 30%, 30%);
-                background-color: #231F3B;
+               
                 display: flex;
                 flex-direction: column;
                 align-items: center;

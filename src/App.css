@@ -2,19 +2,23 @@ body{
   width: 100vw;
   overflow-x: hidden;
 }
+div, article{
+  overflow-x: hidden;
+}
 nav{
   width: 90vw;
   height: 8vh;
   padding: 20px 5vw;
   display: flex;
   position: fixed;
+  border-bottom: 2px solid #DAFDFC;
   z-index: 5;
   top: 0;
   left: 0;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  background-color: #01091f;
+  background-image: linear-gradient(to left, #01091f, #0c3255);
   color: #DAFDFC;
 }
 nav section{
@@ -26,7 +30,6 @@ nav img{
 }
 nav h1{
   margin: 0;
-  font-style: italic;
   color: #DAFDFC;
   font-size: calc(1vw + 2vh + 1rem);
 }
@@ -34,8 +37,9 @@ footer{
   position: relative;
   z-index: 4;
   display: flex;
+  border-top: 2px solid #DAFDFC;
   flex-direction: row;
-  background-color: #01091f;
+  background-image: linear-gradient(to left, #01091f, #0c3255);
   justify-content: center;
   align-items: center;
   padding: 10px 5vw;
@@ -56,7 +60,6 @@ footer i{
   padding: 5px;
   transition: 1s;
   border-radius: 5px;
-  font-weight: 600;
   animation: ButtonAn 3s ease;
   animation-iteration-count: infinite;
   cursor: pointer;
@@ -68,13 +71,8 @@ footer i{
   position: relative;
   font-size: calc(10px + 1vh + 1vw);
   color: #DAFDFC;
-  background-color: #01091f;
   padding: 8px;
   transition: .5s;
-}
-
-.cart-button:hover{
-  background-color: #161f38;
 }
 
 .cart-button::before{
@@ -107,7 +105,12 @@ footer i{
   width: 100%;
 }
 
-
+.cart-btn{
+  transition: 1s;
+}
+.cart-btn:hover{
+  background: #dafdfc2c;
+}
 
 .styled-button.DarkBack{
   color: #DAFDFC;
@@ -126,7 +129,7 @@ footer i{
 .loading-container{
   z-index: 10;
   position: fixed;
-  background:#01091f;
+  background-image: linear-gradient(to left, #01091f, #0c3255);
   color: #DAFDFC;
   top: 0;
   left: 0;
@@ -143,42 +146,58 @@ footer i{
 }
 .home-container{
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  flex-direction: row;
   height: 100vh;
-}
-.home-container section{
-  padding: 20px 10%;
-  background: rgba(0, 0, 30, .5);
-  color: white;
-  position: relative;
-  width: 90%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
   align-items: center;
-  text-align: center;
-  justify-content: center;
-  z-index: 1;
+  justify-content: space-between;
+  padding: 0 3vw;
+  width: 100%;
+  gap: 5%;
 }
+.home-container article div{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-start;
+}
+.home-container img{
+  width: 50%;
+  margin-right: 5%;
+}
+
+@media (max-width: 684px) {
+  .home-container img{
+    display: none;
+  }
+}
+
 .home-container.green-ocean section{
   background: rgba(0, 0, 30, .6);
 }
 .home-container h1{
-  color: white;
   font-size: calc(2vw + 2vh + 1rem);
 }
 .home-container a{
   font-size: calc(1vw + 1vh + 1rem);
-  color: #DAFDFC;
-  background: transparent;
   border: 3px solid;
+  background-image:  linear-gradient(to left, #01091f, #0c3255);
+  color: #DAFDFC;
   cursor: pointer;
+  transition: 1s;
   padding: 5px 10px;
   border-radius: 5px;
-  animation: ButtonAn 2s ease;
-  animation-iteration-count: infinite;
+}
+.home-container a:first-child{
+  background: transparent;
+  color: #01091f;
+}
+.home-container a:hover{
+  transition: 1s;
+  background-image: linear-gradient(to left, #0c3255, #0c3255);
+}
+.home-container a:first-child:hover{
+  background: #01091f;
+  color: #DAFDFC;
 }
 
 .fa-whatsapp{ color: #DAFDFC;}
@@ -197,7 +216,7 @@ footer i{
 }
 .product-main-img{
   width: 100%;
-  height: 500px;
+  height: 300px;
   border-top-left-radius: 10px;
   border-top-right-radius: 10px;
 }

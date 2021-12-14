@@ -9,8 +9,8 @@ import BungContainer from './Containers/BungContainer/BungContainer';
 import Reservas from './Containers/Reservas/Reservas';
 import WhatsAppButton from './Components/WhatsAppButton/WhatsAppButton';
 import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
-import GOContaniner from './Containers/GreenOcean/GOContaniner';
 import { AppContextProvider } from './Context';
+import StoreContainer from "./Containers/Store/StoreContainer"
 import CartContainer from './Containers/CartContainer/CartContainer';
 
 function App() {
@@ -38,8 +38,8 @@ function App() {
         <Route exact path="/reservas">
           <Reservas/>
         </Route>
-        <Route exact path="/green-ocean-coffee">
-          <GOContaniner/>
+        <Route exact path="/tienda">
+          <StoreContainer/>
         </Route>
         <Route exact path="/carrito">
           <CartContainer/>

@@ -1,8 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Familiar from "./Familiar.png"
-import Familiar2 from "./Familiar2.png"
-import Matrimonial from "./Matrimonial.png"
+import Familiar from "./Familiar.svg"
+import Familiar2 from "./Familiar2.svg"
+import Matrimonial from "../HomeContainer/logo.svg"
 
 const VideoDiv = styled.div`
     width: 100%;
@@ -11,7 +11,7 @@ const VideoDiv = styled.div`
     height: 100%;
     position: fixed;
     z-index: 15;
-    background-color: rgba(0,0,30,.5);
+    background-image: linear-gradient(to left, #01091f, #0c325550);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -63,7 +63,6 @@ justify-content: center;
 
 article{
     color: #01091f;
-    background-color: #c2fffd;
     display: flex;
     flex-direction: column;
     align-items: center;
