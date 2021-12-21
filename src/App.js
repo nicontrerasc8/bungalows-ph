@@ -9,12 +9,15 @@ import BungContainer from './Containers/BungContainer/BungContainer';
 import Reservas from './Containers/Reservas/Reservas';
 import WhatsAppButton from './Components/WhatsAppButton/WhatsAppButton';
 import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
-import { AppContextProvider } from './Context';
+import useAppContext, { AppContextProvider } from './Context';
 import StoreContainer from "./Containers/Store/StoreContainer"
 import CartContainer from './Containers/CartContainer/CartContainer';
+import { ThemeProvider } from 'styled-components';
+import { GlobalStyles, LightTheme, DarkTheme } from './Components/Theme/Theme';
 
 function App() {
   const [isLoading, setIsLoading] = useState(true)
+  const {IsLightTheme, setIsLightTheme} = useAppContext()
   
   useEffect(() => {
     setTimeout(() => {
@@ -22,31 +25,32 @@ function App() {
     }, 3000);
   }, [])
   
-  return <AppContextProvider>
+  return <ThemeProvider theme={IsLightTheme ? LightTheme : DarkTheme}>
       <BrowserRouter>
-      {isLoading && <Loading/>} 
-      <NavBar/>
-      <ScrollToTop/>
-      <WhatsAppButton/>
-      <Switch>
-        <Route exact path="/">
-          <HomeContainer/>
-        </Route>
-        <Route exact path="/bungalows">
-          <BungContainer/>
-        </Route>
-        <Route exact path="/reservas">
-          <Reservas/>
-        </Route>
-        <Route exact path="/tienda">
-          <StoreContainer/>
-        </Route>
-        <Route exact path="/carrito">
-          <CartContainer/>
-        </Route>
-      </Switch>
-      <Footer/>
-    </BrowserRouter>
-  </AppContextProvider> 
+      <GlobalStyles/>
+        {isLoading && <Loading/>} 
+        <NavBar theme={IsLightTheme ? LightTheme : DarkTheme} IsLight={IsLightTheme}/>
+        <ScrollToTop/>
+        <WhatsAppButton/>
+        <Switch>
+          <Route exact path="/">
+            <HomeContainer/>
+          </Route>
+          <Route exact path="/bungalows">
+            <BungContainer/>
+          </Route>
+          <Route exact path="/reservas">
+            <Reservas/>
+          </Route>
+          <Route exact path="/tienda">
+            <StoreContainer/>
+          </Route>
+          <Route exact path="/carrito">
+            <CartContainer/>
+          </Route>
+        </Switch>
+        <Footer/>
+      </BrowserRouter>
+     </ThemeProvider>
 }
 export default App;

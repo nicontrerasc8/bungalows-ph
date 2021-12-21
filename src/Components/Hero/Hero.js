@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import styled from 'styled-components'
+import StyledButton from '../Theme/StyledButton'
 
 const HeroDiv = styled.div`
     background: ${props => props.Background ? props.Background : "black"};
@@ -23,7 +24,7 @@ const HeroDiv = styled.div`
     article{
         padding: 30px 20px;
         border-radius: 5px;
-        border: 3px solid rgb(200,200,200);
+        border: 4px solid;
         width: clamp(300px, 27%, 27%);
 
         h5{
@@ -46,7 +47,7 @@ const HeroDiv = styled.div`
     }
 `
 
-const Hero = ({BC, color, title, info, buttonText, buttonPath}) => {
+const Hero = ({BC, color, title, info, buttonText, buttonPath, btnColor, btnLeter}) => {
     return <HeroDiv Background={BC} Color={color}>
         <h2>{title}</h2>
        <section>
@@ -60,7 +61,7 @@ const Hero = ({BC, color, title, info, buttonText, buttonPath}) => {
                 })
             }
        </section>
-       <Link className="styled-button" to={buttonPath}>{buttonText}</Link>
+       <StyledButton path={buttonPath} texto={buttonText} color={btnColor} letra={btnLeter}/>
     </HeroDiv>
 }
 

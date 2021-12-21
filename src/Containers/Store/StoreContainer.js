@@ -35,12 +35,13 @@ import AceiteCastañas from "./Images/AceiteDeCastañas.jpeg"
 import AceiteLinaza from "./Images/AceiteLinaza.jpeg"
 import AceiteCoco from "./Images/AceiteDeCoco.jpeg"
 import AceiteAjonoli from "./Images/AceiteAjonjoli.jpeg"
+import { DarkTheme, LightTheme } from '../../Components/Theme/Theme'
+import StyledButton from '../../Components/Theme/StyledButton'
 
 const ProductSection = styled.div`
-    width: 90%;
+    width: 100vw;
     margin-top: 8vh;
-    color: #DAFDFC;
-    background-image: linear-gradient(360deg, #01091f, #0c3255);
+    background: ${(props) => props.theme.LightBlue};
     padding: 2rem 5%;
     display: flex;
     flex-direction: column;
@@ -65,8 +66,7 @@ const ProductSection = styled.div`
             grid-gap: 30px;
                 article{
                     width: clamp(300px, 25%, 25%);
-                    padding: 0;
-                    border: 4px solid;
+                    border: 5px solid;
                     border-radius: 13px;
                     h3{
                         font-size: clamp(3rem, calc(1vh + 1vw + 10px), calc(1vh + 1vw + 10px));
@@ -84,23 +84,15 @@ const ProductSection = styled.div`
 
                     }
                     button{
-                        margin: 20px 0;
+                        margin: 1rem 0 0 0;
                         border: none;
+                        font-size: clamp(25px, calc(2vh + 1vw - 5px), calc(2vh + 1vw - 5px));
                     }
                     p{
                         margin: 20px 0; 
                         font-size: clamp(35px, calc(2vh + 1vw - 5px), calc(2vh + 1vw - 5px));
                         font-weight: 500;
                         padding: 0;
-                    }
-                    button{
-                        background: #dafdfc2c;
-                        color: #DAFDFC;
-                        font-size: clamp(25px, calc(2vh + 1vw - 5px), calc(2vh + 1vw - 5px));
-                        padding: 10px;
-                        border-radius: 5px;
-                    
-                        cursor: pointer;
                     }
                     h5{
                         strong{text-transform: lowercase;};
@@ -127,13 +119,13 @@ const AddToCartContainer = styled.main`
         display: grid;
         place-items: center;
         main{
-            border: 3px solid;
+            border: 4px solid;
             display: flex;
             flex-direction: column;
             align-items: center;
-            border-radius: 5%;
-            background-image: linear-gradient(to right, #0A1640, #01091f);
-            color:  #DAFDFC;
+            border-radius: 10px;
+            background: ${(props) => props.theme.LightBlue};
+            color: ${(props) => props.theme.DarkBlue};
             max-width: clamp(300px, 50%,50%);
             padding: 1rem;
                 img{
@@ -152,8 +144,10 @@ const AddToCartContainer = styled.main`
                     width: 150px;
                     button{
                         margin: 0;
+                        background-color: transparent;
+                        color: ${(props) => props.theme.DarkBlue};
                         padding: 10px;
-                        font-size: clamp(30px, calc(2vh + 1vw - 5px), calc(2vh + 1vw - 5px));
+                        font-size: clamp(33px, calc(2vh + 1vw - 5px), calc(2vh + 1vw - 5px));
                     }
                     margin-top: 1rem;
                 }
@@ -169,15 +163,15 @@ const GridOfCat = styled.table`
     flex-wrap: wrap;
     justify-content: center;
     grid-gap: 1rem;
-    th{
+    tr{
         display: flex;
         flex-direction: column;
         width: clamp(150px, 30%, 30%);
         align-items: center;
         padding: 10px;
         justify-content: center;
-        border: 3px solid;
-        border-radius: 10%;
+        border: 4px solid;
+        border-radius: 5px;
         cursor: pointer;
         img{
             width: 60%;
@@ -185,6 +179,11 @@ const GridOfCat = styled.table`
         h3{
             font-size: calc(1vw + 1vh + 1rem);
             margin-top: 0;
+        }
+        &:hover{
+            background-color: ${(props) => props.theme.DarkBlue};
+            color: ${(props) => props.theme.LightBlue};
+            border-color: ${(props) => props.theme.DarkBlue};
         }
     }
 `
@@ -544,7 +543,7 @@ const ConfirmationContainerDiv = ({fn}) => {
     </AddToCartContainer>
 }
 
-const Product = ({data, data2}) => {
+const Product = ({data, data2, theme}) => {
 
     const [AddContainer, setAddContainer] = useState(false)
     const [ConfirmationContainer, setConfirmationContainer] = useState(false)
@@ -582,23 +581,19 @@ const Product = ({data, data2}) => {
                 <main>
                     <h5>{data2.texto} <strong>{data.item}</strong></h5>
                     <span>
-                        <button onClick={ReduceCount}>
+                        <button style={{borderRadius:"5px 0 0 5px"}} onClick={ReduceCount}>
                             -
                         </button>
                         {Count}
-                        <button onClick={() => setCount(Count+1)}>
+                        <button style={{borderRadius:"0 5px 5px 0"}} onClick={() => setCount(Count+1)}>
                             +
                         </button>
                     </span>
-                    <h6>Total a pagar: s/.{data.precio * Count}</h6>
+                    <h6>Total a pagar: S/.{Math.round(data.precio * 10 * Count) / 10}</h6>
                     <a href={`https://api.whatsapp.com/send?phone=51949161510&text=${`Hola! Vengo de la web de bungalows PH, me gustaría ordenar ${Count} unidades de ${data2.texto} de ${data.item}.`}`} target="_blank" >
-                        <button style={{margin:"1rem 0 0 0 "}}>
-                            Haz el pedido
-                        </button>
+                        <StyledButton Callback={CloseAddContainer} texto="Haz el pedido" color={LightTheme.Orange}/>
                     </a>
-                    <button
-                    onClick={CloseAddContainer}>
-                        Volver</button>
+                    <StyledButton Callback={CloseAddContainer} texto="Volver" color={LightTheme.Yellow}/>
                 </main>
             </AddToCartContainer> : null
         }
@@ -606,9 +601,7 @@ const Product = ({data, data2}) => {
     <span>
         s/. {data.precio}
     </span>
-    <button onClick={ShowAddCointainer}>
-        Comprar <i className="fas fa-shopping-cart"></i>
-    </button>
+    <StyledButton Callback={ShowAddCointainer} color={theme.DarkBlue} letra={theme.LightBlue} texto={<span>Comprar <i className="fas fa-shopping-cart"></i></span>}/>
 </div>
 }
 
@@ -654,6 +647,8 @@ const StoreContaniner = () => {
 
     const [Category, setCategory] = useState("")
     const [ChangeCat, setChangeCat] = useState(true)
+    const {IsLightTheme} = useAppContext()
+
     const ChangeCategory = (parametro) => {
         setCategory(parametro);
         setChangeCat(false);
@@ -661,7 +656,7 @@ const StoreContaniner = () => {
     } 
 
     return  <>
-        <ProductSection>
+        <ProductSection theme={IsLightTheme ? LightTheme : DarkTheme}>
             {
                 ChangeCat ? <h2>Tienda</h2> : <h2>Categoria: 
                     {Category == 1 && " Aceite"}
@@ -676,16 +671,16 @@ const StoreContaniner = () => {
             {
                 ChangeCat ? 
                     <h4>Elige una categoria</h4> : 
-                    <button onClick={() => setChangeCat(true)} className='styled-button'>Cambia de categoria</button>
+                    <StyledButton Callback={() => setChangeCat(true)} color={LightTheme.Orange} letra={LightTheme.Dark} texto="Cambiar de categoria"/>
             }
             {
                 ChangeCat ? <GridOfCat>
                     {
                         ArrOfCategories && ArrOfCategories.map((data, idx) => {
-                            return <th className='cart-btn' key={idx} onClick={() => ChangeCategory(data.id)}>
+                            return <tr className='cart-btn' key={idx} onClick={() => ChangeCategory(data.id)}>
                                 <img src={data.img}/>
                                 <h3>{data.text}</h3>
-                            </th>
+                            </tr>
                         })
                     }
                 </GridOfCat>
@@ -697,7 +692,7 @@ const StoreContaniner = () => {
                             <h3>{data.texto}</h3>
                             {
                                 data.presentaciones && data.presentaciones.map((info,idx) => {
-                                    return <Product data={info} key={idx} data2={data} />
+                                    return <Product theme={IsLightTheme ? LightTheme : DarkTheme} data={info} key={idx} data2={data} />
                                 })
                             }
                         </article>

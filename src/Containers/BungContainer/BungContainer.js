@@ -1,52 +1,19 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import Familiar from "./Familiar.svg"
-import Familiar2 from "./Familiar2.svg"
-import Matrimonial from "../HomeContainer/logo.svg"
-
-const VideoDiv = styled.div`
-    width: 100%;
-    top: 0;
-    left: 0;
-    height: 100%;
-    position: fixed;
-    z-index: 15;
-    background-image: linear-gradient(to left, #01091f, #0c325550);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    iframe{
-        width: clamp(300px, 50%, 50%);
-        height: 400px;
-        border: 3px solid #c2fffd;
-        border-radius: 10px;
-    }
-
-    button{
-        margin-top: 1rem;
-        font-size: calc(1vh + 20px);
-        border-radius: 5px;
-        cursor: pointer;
-        color: #c2fffd;
-        padding: 5px;
-        background: rgb(0,0,30);
-        border: 3px solid;
-    }
-
-`
+import StyledButton from "../../Components/Theme/StyledButton"
+import { LightTheme } from '../../Components/Theme/Theme'
 
 const BungGridDiv = styled.div`
 margin-top: calc(8vh + 2rem);
-text-align: center;
 justify-content: center;
 padding: 40px 5vw;
-width: 90vw;
 
-img{
-    width: 80%;
-    border-radius: 5px;
+iframe{
+    width: 100%;
+    border-radius: 10px;
+    border: 4px solid;
+    height: clamp(30vh, 25rem,25rem);
+    margin-bottom: 2rem;
 }
 
 h2{
@@ -62,14 +29,15 @@ justify-content: center;
 }
 
 article{
-    color: #01091f;
+    color: ${(props) => props.theme.DarkBlue};
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+    justify-content: flex-start;
     border: 4px solid;
-    border-radius: 20px;
+    border-radius: 10px;
     padding: 20px 5%;
-    width: clamp(300px, 35%, 40%);
+    width: clamp(300px, 60%, 60%);
     h1{
         margin: 20px 0 0 0;
         font-size: calc(2vw + 2vh + 3rem);
@@ -81,8 +49,12 @@ article{
         margin: 10px 0 40px 0;
         font-size: calc(1vw + 2vh + 1rem);
     }
+    p{
+        font-size: calc(1vw + 2vh + 1rem);
+        margin: 0;
+    }
     ul{
-        margin: 40px 0;
+        margin: 0 0 40px 0;
         li{
             text-align: left;
             font-size: 30px;
@@ -94,30 +66,40 @@ article{
 const BungInfo = [
     {
         Number: 202,
-        Image: Familiar,
         Title: "Bungalow familiar",
-        src: "https://www.youtube.com/embed/IfDC6vYdn1Y",
+        src: "https://www.youtube.com/embed/OsW_wRDZb8E",
         Button: true,
         ul:[
-            "Una cama queen", "Un camarote", "Un baño privado", "Cocina", "TV", "Refrigeradora", "Terraza con poltronas y vista al mar", "Wifi"
+            "Una cama queen", 
+            "Un camarote", 
+            "Un baño privado", 
+            "Cocina", 
+            "TV", 
+            "Refrigeradora", 
+            "Terraza con poltronas y vista al mar", 
+            "Wifi"
         ]
     },
     {
         Number: 302,
-        Image: Matrimonial,
-        Title: "Bungalow matrimonial",
+        Title:"Bungalow matrimonial",
         src: "https://www.youtube.com/embed/V38M4pdgsCE",
         Button: true,
         ul:[
-            "Cama queen con vista al mar", "Dos sofá cama", "Kitchenette bar", "Baño con terma", "Terraza con vista al mar", "Parrilla eléctrica", "Sala de estar", "Vigilancia 24 horas", "Amoblado y equipado" 
+            "Cama queen con vista al mar", 
+            "Dos sofá cama", "Kitchenette bar", 
+            "Baño con terma", "Terraza con vista al mar", 
+            "Parrilla eléctrica", 
+            "Sala de estar", 
+            "Vigilancia 24 horas", 
+            "Amoblado y equipado" 
         ]
     },
     {
         Number: 401,
-        Image: Familiar2,
         Title: "Bungalow familiar",
         Button: false,
-        src:"https://drive.google.com/file/d/1xtqxefS0q-_pjuHIxIAPRz9VuOnsdSlD/view?usp=sharing",
+        src:"https://www.youtube.com/embed/T95_Vw21di8",
         ul:[
             "Un dormitorio.",
             "Un baño.",
@@ -133,30 +115,16 @@ const BungInfo = [
 ]
 
 const BungContainer = () => {
-    const [Video, setVideo] = useState(false)
-    const [VideoSrc, setVideoSrc] = useState("")
-    const [Detalles, setDetalles] = useState(false)
 
-    const ChangeVideoValue = (source) => {
-        setVideo(!Video)
-        setVideoSrc(source)
+    const [OpenDialog, setOpenDialog] = useState(false)
+    const [DialogValue, setDialogValue] = useState(202)
+
+    const ChangeDialogValue = () => {
+        setOpenDialog(!OpenDialog)
     }
 
-
     return <BungGridDiv>
-        {
-            Video && <VideoDiv>
-                <iframe 
-                src={VideoSrc} 
-                title="YouTube video player" 
-                frameborder="0" 
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; full-screen" 
-                allowfullscreen></iframe>
-                <button onClick={ChangeVideoValue}>
-                    Cerrar vídeo
-                </button>
-            </VideoDiv>
-        }
+        
             <section>
                 {
                     BungInfo && BungInfo.map((data, idx) => {
@@ -164,24 +132,18 @@ const BungContainer = () => {
                             <h1>{data.Number}</h1>
                             <img src={data.Image}/>
                             <h3>{data.Title}</h3>
-                            {
-                                data.Button ? <button className="styled-button bg-transparent" onClick={
-                                    () => ChangeVideoValue(data.src)
-                                } >Ver vídeo</button>
-                                : <a href={data.src} target="_blank">
-                                <button className="styled-button bg-transparent">
-                                    Ver PDF
-                                </button>
-                            </a>
-                            }
-                            <button className="styled-button" onClick={() => setDetalles(!Detalles)}>{Detalles ? "Ocultar detalles" : "Ver detalles"}</button>
-                            {
-                                Detalles && <ul>
+                           <iframe src={data.src}
+                           title="YouTube video player" 
+                           frameborder="0" 
+                           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
+                            <StyledButton hyperLink={`https://api.whatsapp.com/send?phone=51949161510&text=${`¡Hola!, me gustaría saber los precios del bungalow ${data.Number}.`}`} texto="Consulta los precios" color={LightTheme.Orange} letra={LightTheme.Dark}/>
+                            <p>Incluye:</p>
+                                <ul>
                                 {data.ul && data.ul.map((info, id) => {
                                     return <li key={id}>{info}</li>
                                 })}
                                 </ul>
-                            }
+                                {/* <StyledButton Callback={ChangeDialogValue} texto="Reserva el bungalow" color={LightTheme.Yellow} letra={LightTheme.Dark}/> */}
                         </article>
                     })
                 }

@@ -1,5 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
+import StyledButton from '../Theme/StyledButton'
+import {DarkTheme, LightTheme} from "../Theme/Theme"
 
 const Data = [
     {
@@ -17,9 +19,9 @@ const Data = [
 ]
 
 const Banner = styled.div`
-    background-image: linear-gradient(to left, #01091f, #0c3255);
-    color: #DAFDFC;
-    padding: 20px 5vw;
+    background: ${(props) => props.theme.DarkBlue};
+    color: ${(props) => props.theme.LightBlue};
+    padding: 3rem 5vw;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -34,13 +36,14 @@ const Banner = styled.div`
             flex-wrap: wrap;
             grid-gap: 1rem;
             justify-content: center;
+            margin-bottom: 2rem;
             article{
                 width: clamp(280px, 30%, 30%);
-               
+                justify-content: center;
                 display: flex;
                 flex-direction: column;
                 align-items: center;
-                border:3px solid;
+                border:4px solid;
                 padding: 20px 3%;
                 border-radius:10px;
                     
@@ -49,26 +52,26 @@ const Banner = styled.div`
                     }
 
                     span{
-                        color: #c2fffd;
                         font-size: calc(1vh + 1vw + 4px);
                     }
             }
         }
 `
 
-const RecomendationsBanner = () => {
-    return <Banner>
+const RecomendationsBanner = ({IsLight}) => {
+    return <Banner theme={IsLight ? LightTheme : DarkTheme}>
             <h1>"Nuestros huéspedes son prioridad."</h1>
             <section>
                 {
                     Data && Data.map((data,idx) => {
-                        return <article key={idx}>
+                        return <article key={idx} className={"yellow-border"}>
                             <p>"{data.texto}."</p>
                             <span>{data.fecha}</span>
                         </article>
                     })
                 }
             </section>
+            <StyledButton path="/bungalows" color={LightTheme.Orange} texto="Mira los bungalows" letra={LightTheme.Dark}/>
         </Banner>
 }
 

@@ -1,76 +1,12 @@
-body{
-  width: 100vw;
-  overflow-x: hidden;
-}
-div, article{
-  overflow-x: hidden;
-}
-nav{
-  width: 90vw;
-  height: 8vh;
-  padding: 20px 5vw;
-  display: flex;
-  position: fixed;
-  border-bottom: 2px solid #DAFDFC;
-  z-index: 5;
-  top: 0;
-  left: 0;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  background-image: linear-gradient(to left, #01091f, #0c3255);
-  color: #DAFDFC;
-}
-nav section{
-  display: flex;
-  grid-gap: 20px;
-}
-nav img{
-  height: 80px;
-}
-nav h1{
-  margin: 0;
-  color: #DAFDFC;
-  font-size: calc(1vw + 2vh + 1rem);
-}
-footer{
-  position: relative;
-  z-index: 4;
-  display: flex;
-  border-top: 2px solid #DAFDFC;
-  flex-direction: row;
-  background-image: linear-gradient(to left, #01091f, #0c3255);
-  justify-content: center;
-  align-items: center;
-  padding: 10px 5vw;
-  grid-gap: 20px;
-}
-footer p{
-  color: white;
-  font-size: 30px;
-}
-footer i{
-  font-size: 40px;
-  color: #c2fffd;
-}
-
-.styled-button{
-  font-size: calc(10px + 1vh + 1vw);
-  border: 3px solid #01091f;
-  padding: 5px;
+button{
   transition: 1s;
-  border-radius: 5px;
-  animation: ButtonAn 3s ease;
-  animation-iteration-count: infinite;
   cursor: pointer;
-  background: #01091f;
-  color: #DAFDFC;
 }
 
 .cart-button{
   position: relative;
   font-size: calc(10px + 1vh + 1vw);
-  color: #DAFDFC;
+  color: #093854;
   padding: 8px;
   transition: .5s;
 }
@@ -78,7 +14,7 @@ footer i{
 .cart-button::before{
   content: "";
   position: absolute;
-  background-color: #DAFDFC;
+  background-color: #093854;
   height: 3px;
   left: 0;
   transition: .5s;
@@ -93,7 +29,7 @@ footer i{
 .cart-button::after{
   content: "";
   position: absolute;
-  background-color: #DAFDFC;
+  background-color: #093854;
   height: 3px;
   left: 0;
   transition: .5s;
@@ -126,44 +62,7 @@ footer i{
     transform: scale(1.1);
   }
 }
-.loading-container{
-  z-index: 10;
-  position: fixed;
-  background-image: linear-gradient(to left, #01091f, #0c3255);
-  color: #DAFDFC;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  font-size: calc(5vh + 5vw + 3rem);
-  display: flex;
-  align-items: center;
-  text-align: center;
-  justify-content: center;
-}
-.loading-container i{
-  color: #DAFDFC;
-}
-.home-container{
-  display: flex;
-  flex-direction: row;
-  height: 100vh;
-  align-items: center;
-  justify-content: space-between;
-  padding: 0 3vw;
-  width: 100%;
-  gap: 5%;
-}
-.home-container article div{
-  display: flex;
-  flex-wrap: wrap;
-  gap: 1rem;
-  align-items: flex-start;
-}
-.home-container img{
-  width: 50%;
-  margin-right: 5%;
-}
+
 
 @media (max-width: 684px) {
   .home-container img{
@@ -177,7 +76,7 @@ footer i{
 .home-container h1{
   font-size: calc(2vw + 2vh + 1rem);
 }
-.home-container a{
+/* .home-container a{
   font-size: calc(1vw + 1vh + 1rem);
   border: 3px solid;
   background-image:  linear-gradient(to left, #01091f, #0c3255);
@@ -198,7 +97,7 @@ footer i{
 .home-container a:first-child:hover{
   background: #01091f;
   color: #DAFDFC;
-}
+} */
 
 .fa-whatsapp{ color: #DAFDFC;}
 
