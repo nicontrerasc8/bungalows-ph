@@ -92,20 +92,20 @@ const NavBar = () => {
             </Link>
 
             <section>
-                <StyledButton Callback={ChangePalette} color={IsLightTheme ? LightTheme.DarkBlue : DarkTheme.DarkBlue} letra={IsLightTheme ? LightTheme.LightBlue : DarkTheme.LightBlue} texto={IsLightTheme ? <i class="fas fa-moon"></i> : <i class="fas fa-sun"></i>}/>
+                <StyledButton Callback={ChangePalette} color={IsLightTheme ? LightTheme.DarkBlue : DarkTheme.DarkBlue} letra={IsLightTheme ? LightTheme.LightBlue : DarkTheme.LightBlue} texto={IsLightTheme ? <i className="fas fa-moon"></i> : <i className="fas fa-sun"></i>}/>
                 {
                     IsPhone ? 
                     <StyledButton Callback={() => setToggleMenu(!ToggleMenu)} 
                         color={IsLightTheme ? LightTheme.LightBlue : DarkTheme.LightBlue} 
                         letra={IsLightTheme ? LightTheme.DarkBlue : DarkTheme.DarkBlue}
                         texto={ToggleMenu ? <i className="fas fa-sign-out-alt"></i> : <i className="fas fa-bars"></i>} /> : <>
-                    <StyledButton path="/bungalows" color={LightTheme.Orange} letra={LightTheme.Dark} texto={<span>Bungalows <i class="fas fa-home"></i></span>}/>
-                    <StyledButton path="/tienda" color={LightTheme.Yellow} letra={LightTheme.Dark} texto={<span>Tienda <i class="fas fa-store"></i></span>}/></>
+                    <StyledButton path="/bungalows" color={LightTheme.Orange} letra={LightTheme.Dark} texto={<span>Bungalows <i className="fas fa-home"></i></span>}/>
+                    <StyledButton path="/tienda" color={LightTheme.Yellow} letra={LightTheme.Dark} texto={<span>Tienda <i className="fas fa-store"></i></span>}/></>
                 }
             </section>
-            <aside className={ToggleMenu && "active"}>
-                <StyledButton Callback={() => ChangeRoute("/bungalows")} color={LightTheme.Orange} letra={LightTheme.Dark} texto={<span>Bungalows <i class="fas fa-home"></i></span>}/>
-                <StyledButton Callback={() => ChangeRoute("/tienda")} color={LightTheme.Yellow} letra={LightTheme.Dark} texto={<span>Tienda <i class="fas fa-store"></i></span>}/>
+            <aside className={ToggleMenu ? "active" : undefined}>
+                <StyledButton Callback={() => ChangeRoute("/bungalows")} color={LightTheme.Orange} letra={LightTheme.Dark} texto={<span>Bungalows <i className="fas fa-home"></i></span>}/>
+                <StyledButton Callback={() => ChangeRoute("/tienda")} color={LightTheme.Yellow} letra={LightTheme.Dark} texto={<span>Tienda <i className="fas fa-store"></i></span>}/>
             </aside>
         </NavBarComponent>
     )

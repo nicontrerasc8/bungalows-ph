@@ -63,13 +63,6 @@ button{
   }
 }
 
-
-@media (max-width: 684px) {
-  .home-container img{
-    display: none;
-  }
-}
-
 .home-container.green-ocean section{
   background: rgba(0, 0, 30, .6);
 }

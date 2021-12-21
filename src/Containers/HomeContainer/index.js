@@ -60,9 +60,27 @@ const WhyInfo = [
 
 const SVG = () => {
     const {IsLightTheme} = useAppContext()
-    return <div class="custom-shape-divider-bottom-1639756025">
+    return <div className="custom-shape-divider-bottom-1639756025">
     <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
         <path d="M1200 120L0 16.48 0 0 1200 0 1200 120z" fill={IsLightTheme ? LightTheme.DarkBlue : DarkTheme.DarkBlue}></path>
+    </svg>
+</div>
+}
+const SVG2 = () => {
+    const {IsLightTheme} = useAppContext()
+    return <div class="custom-shape-divider-top-1640116466">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+        fill={IsLightTheme ? LightTheme.DarkBlue : DarkTheme.DarkBlue}></path>
+    </svg>
+</div>
+}
+const SVG3 = () => {
+    const {IsLightTheme} = useAppContext()
+    return <div class="custom-shape-divider-bottom-1640116882">
+    <svg data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+        <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" 
+        fill={IsLightTheme ? LightTheme.DarkBlue : DarkTheme.DarkBlue}></path>
     </svg>
 </div>
 }
@@ -73,8 +91,8 @@ const Landing = () => {
             <article>
                 <h1>Disfruta lo mejor de la playa en Punta Hermosa</h1>
                <div>
-                <StyledButton path="/bungalows" color={LightTheme.Orange} letra={LightTheme.Dark} texto={<span>Ver bungalows <i class="fas fa-home"></i></span>}/>
-                <StyledButton path="/tienda" color={LightTheme.Yellow} letra={LightTheme.Dark} texto={<span>Tienda <i class="fas fa-store"></i></span>}/>
+                <StyledButton path="/bungalows" color={LightTheme.Orange} letra={LightTheme.Dark} texto={<span>Ver bungalows <i className="fas fa-home"></i></span>}/>
+                <StyledButton path="/tienda" color={LightTheme.Yellow} letra={LightTheme.Dark} texto={<span>Tienda <i className="fas fa-store"></i></span>}/>
                </div>
             </article>
             <iframe src="https://www.youtube.com/embed/cep1nKmPP-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
@@ -87,12 +105,14 @@ const HomeContainer = () => {
         <SVG/> 
         {/* <GreenOceanBanner/>  */}
         <RecomendationsBanner IsLight={IsLightTheme}/>
+        <SVG2/>
         <Hero 
             BC={IsLightTheme ? LightTheme.LightBlue : DarkTheme.LightBlue} 
             color={IsLightTheme ? LightTheme.DarkBlue : DarkTheme.DarkBlue} 
             title="¿Por qué elegir Punta Hermosa?" info={WhyInfo} 
             btnColor={LightTheme.Yellow} btnLeter={LightTheme.Dark}
             buttonText="Ver los bungalows" buttonPath="/bungalows"/>
+            <SVG3/>
         <Ubicacion 
         Background={IsLightTheme ? LightTheme.DarkBlue : DarkTheme.DarkBlue} 
         Color={IsLightTheme ? LightTheme.LightBlue : DarkTheme.LightBlue}    >

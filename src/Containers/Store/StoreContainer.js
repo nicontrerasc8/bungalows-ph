@@ -1,4 +1,6 @@
 import React, { useState } from 'react'
+import Backdrop from "../../Components/Backdrop"
+import { Modal } from '../../Components/Theme/Theme'
 import styled from "styled-components"
 import Dark from "./Images/1Dark.JPG"
 import Medium from "./Images/1Medium.JPG"
@@ -131,25 +133,6 @@ const AddToCartContainer = styled.main`
                 img{
                     border-radius: 10px;
                     width: clamp(200px,30%,50%);
-                }
-                span{
-                    border: 3px solid;
-                    display: grid;
-                    margin-bottom: 1rem;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 10px;
-                    font-size: clamp(25px, calc(2vh + 1vw - 5px), calc(2vh + 1vw - 5px));
-                    grid-template-columns: 1fr 1fr 1fr;
-                    width: 150px;
-                    button{
-                        margin: 0;
-                        background-color: transparent;
-                        color: ${(props) => props.theme.DarkBlue};
-                        padding: 10px;
-                        font-size: clamp(33px, calc(2vh + 1vw - 5px), calc(2vh + 1vw - 5px));
-                    }
-                    margin-top: 1rem;
                 }
                 i{
                     font-size: calc(3rem + 2vw + 2vh);
@@ -530,78 +513,19 @@ const ImageData = [
     },
 ]
 
-const ConfirmationContainerDiv = ({fn}) => {
-    return <AddToCartContainer>
-         <main>
-             <i className="fas fa-coffee"></i>
-            <h5 style={{margin:"2rem 0"}}>Tu producto ha sido añadido al carrito</h5>
-                       {/* Botón para el carrito */}
-            <button onClick={fn} style={{background:"#1F1C30"}}>
-                Seguir comprando
-            </button>
-         </main>
-    </AddToCartContainer>
-}
-
-const Product = ({data, data2, theme}) => {
-
-    const [AddContainer, setAddContainer] = useState(false)
-    const [ConfirmationContainer, setConfirmationContainer] = useState(false)
-    const [Count, setCount] = useState(1)
+const Product = ({data, CallBack, theme}) => {
 
     const {addProduct} = useAppContext()
 
-    const ShowAddCointainer = () => {
-        setAddContainer(true)
-    }
 
-    const ReduceCount = () => {
-        if (Count > 1) setCount(Count-1)
-    }
 
-    const CloseAddContainer = () => {
-        setAddContainer(false)
-    }
-    const ChangeConfirmationContainer = () => {
-        setConfirmationContainer(!ConfirmationContainer)
-    }
-
-    const AddToCart = () => {
-        addProduct(data,Count)
-        CloseAddContainer()
-        ChangeConfirmationContainer()
-    }
 
     return <div>
-        {
-            ConfirmationContainer && <ConfirmationContainerDiv fn={ChangeConfirmationContainer}/>
-        }
-        {
-            AddContainer ? <AddToCartContainer>
-                <main>
-                    <h5>{data2.texto} <strong>{data.item}</strong></h5>
-                    <span>
-                        <button style={{borderRadius:"5px 0 0 5px"}} onClick={ReduceCount}>
-                            -
-                        </button>
-                        {Count}
-                        <button style={{borderRadius:"0 5px 5px 0"}} onClick={() => setCount(Count+1)}>
-                            +
-                        </button>
-                    </span>
-                    <h6>Total a pagar: S/.{Math.round(data.precio * 10 * Count) / 10}</h6>
-                    <a href={`https://api.whatsapp.com/send?phone=51949161510&text=${`Hola! Vengo de la web de bungalows PH, me gustaría ordenar ${Count} unidades de ${data2.texto} de ${data.item}.`}`} target="_blank" >
-                        <StyledButton Callback={CloseAddContainer} texto="Haz el pedido" color={LightTheme.Orange}/>
-                    </a>
-                    <StyledButton Callback={CloseAddContainer} texto="Volver" color={LightTheme.Yellow}/>
-                </main>
-            </AddToCartContainer> : null
-        }
     <p>{data.item}</p>
     <span>
         s/. {data.precio}
     </span>
-    <StyledButton Callback={ShowAddCointainer} color={theme.DarkBlue} letra={theme.LightBlue} texto={<span>Comprar <i className="fas fa-shopping-cart"></i></span>}/>
+    <StyledButton Callback={CallBack} color={theme.DarkBlue} letra={theme.LightBlue} texto={<span>Comprar <i className="fas fa-shopping-cart"></i></span>}/>
 </div>
 }
 
@@ -648,15 +572,46 @@ const StoreContaniner = () => {
     const [Category, setCategory] = useState("")
     const [ChangeCat, setChangeCat] = useState(true)
     const {IsLightTheme} = useAppContext()
+    const [AddContainer, setAddContainer] = useState(false)
+    const [Count, setCount] = useState(1)
+    const [ItemSize, setItemSize] = useState("dde")
+    const [ItemText, setItemText] = useState("deed")
+    const [ItemPrice, setItemPrice] = useState(1)
 
     const ChangeCategory = (parametro) => {
         setCategory(parametro);
         setChangeCat(false);
         window.scrollTo(0, 0);
     } 
+    const OpenAddContainer = (size, text, price) => {
+        setItemSize(size)
+        setItemText(text)
+        setItemPrice(price)
+        setAddContainer(true)
+    }
+    const ReduceCount = () => {
+        if (Count > 1) setCount(Count-1)
+    }
+
 
     return  <>
         <ProductSection theme={IsLightTheme ? LightTheme : DarkTheme}>
+            <Backdrop isOn={AddContainer} event={() => setAddContainer(false)}>
+                <Modal>
+                <h5 className='Product-Cart-Title'>{ItemText} <strong>{ItemSize}</strong></h5> 
+                        <span className='counter'>
+                            <button style={{borderRadius:"5px 0 0 5px"}} onClick={ReduceCount}>
+                                -
+                            </button>
+                            {Count}
+                            <button style={{borderRadius:"0 5px 5px 0"}} onClick={() => setCount(Count+1)}>
+                                +
+                            </button>
+                        </span>
+                        <p style={{fontSize:"calc(1vw + 1rem)"}}>Precio total: S/.{Math.round(ItemPrice * 10 * Count) / 10}</p>
+                        <StyledButton texto="Comprar" letra={LightTheme.Dark} color={LightTheme.Orange} hyperLink={`https://api.whatsapp.com/send?phone=51949161510&text=${`¡Hola! vengo de la web de bungalows PH. Me gustaría ordenar ${Count} unidades de ${ItemText} de ${ItemSize}.`}`}/>
+                </Modal>
+            </Backdrop>
             {
                 ChangeCat ? <h2>Tienda</h2> : <h2>Categoria: 
                     {Category == 1 && " Aceite"}
@@ -692,7 +647,7 @@ const StoreContaniner = () => {
                             <h3>{data.texto}</h3>
                             {
                                 data.presentaciones && data.presentaciones.map((info,idx) => {
-                                    return <Product theme={IsLightTheme ? LightTheme : DarkTheme} data={info} key={idx} data2={data} />
+                                    return <Product CallBack={() => OpenAddContainer(info.item, data.texto, info.precio)} theme={IsLightTheme ? LightTheme : DarkTheme} data={info} key={idx} data2={data} />
                                 })
                             }
                         </article>

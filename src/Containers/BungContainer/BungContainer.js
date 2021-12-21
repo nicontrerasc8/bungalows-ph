@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
+import Backdrop from '../../Components/Backdrop'
 import StyledButton from "../../Components/Theme/StyledButton"
-import { LightTheme } from '../../Components/Theme/Theme'
+import { DarkTheme, LightTheme, Modal } from '../../Components/Theme/Theme'
 
 const BungGridDiv = styled.div`
 margin-top: calc(8vh + 2rem);
@@ -118,12 +119,43 @@ const BungContainer = () => {
 
     const [OpenDialog, setOpenDialog] = useState(false)
     const [DialogValue, setDialogValue] = useState(202)
+    var Today = new Date();
+    var date = Today.getFullYear()+'-'+(Today.getMonth()+1)+'-'+(Today.getDate()+1);
+    var date2 = Today.getFullYear()+'-'+(Today.getMonth()+1)+'-'+(Today.getDate() + 8);
+    const [ValorLLegada, setValorLLegada] = useState(date)
+    const [ValorSalida, setValorSalida] = useState(date2)
 
-    const ChangeDialogValue = () => {
+    const ChangeDialogValue = (value) => {
         setOpenDialog(!OpenDialog)
+        setDialogValue(value)
     }
 
     return <BungGridDiv>
+         <Backdrop isOn={OpenDialog} event={() => setOpenDialog(false)}>
+                <Modal>
+                    <h2>Reserva el bungalow {DialogValue}</h2>
+                    <p>Día de llegada:</p>
+                    <input type="date" 
+                        value={ValorLLegada}
+                        onChange={(e) => setValorLLegada(e.target.value)}    />
+                    <p>Día de salida:</p>
+                    <input type="date" 
+                    value={ValorSalida}
+                    onChange={(e) => setValorSalida(e.target.value)}   
+                    />
+                    <StyledButton 
+                    hyperLink={`https://api.whatsapp.com/send?phone=51949161510&text=${`¡Hola!, me gustaría reservar el bungalow ${DialogValue} desde el ${ValorLLegada} hasta el ${ValorSalida}.`}`}
+                    texto="Haz la reserva"
+                    color={LightTheme.Orange}
+                    letra={LightTheme.Dark}
+                    />
+                    <StyledButton 
+                        Callback={() => setOpenDialog(false)}
+                        texto="Volver"
+                        color={DarkTheme.Yellow}
+                    />
+                </Modal>
+            </Backdrop>
         
             <section>
                 {
@@ -143,7 +175,8 @@ const BungContainer = () => {
                                     return <li key={id}>{info}</li>
                                 })}
                                 </ul>
-                                {/* <StyledButton Callback={ChangeDialogValue} texto="Reserva el bungalow" color={LightTheme.Yellow} letra={LightTheme.Dark}/> */}
+                                <StyledButton Callback={() => ChangeDialogValue(data.Number)} texto="Reserva el bungalow" color={LightTheme.Yellow} letra={LightTheme.Dark}/>
+                                
                         </article>
                     })
                 }

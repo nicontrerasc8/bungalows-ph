@@ -6,7 +6,6 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import HomeContainer from './Containers/HomeContainer';
 import Footer from './Components/Footer/Footer';
 import BungContainer from './Containers/BungContainer/BungContainer';
-import Reservas from './Containers/Reservas/Reservas';
 import WhatsAppButton from './Components/WhatsAppButton/WhatsAppButton';
 import ScrollToTop from './Components/ScrollToTop/ScrollToTop';
 import useAppContext, { AppContextProvider } from './Context';
@@ -38,9 +37,6 @@ function App() {
           </Route>
           <Route exact path="/bungalows">
             <BungContainer/>
-          </Route>
-          <Route exact path="/reservas">
-            <Reservas/>
           </Route>
           <Route exact path="/tienda">
             <StoreContainer/>

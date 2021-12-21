@@ -1,4 +1,4 @@
-import { createGlobalStyle } from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
 export const LightTheme = {
     Dark: "#021926",
@@ -16,6 +16,37 @@ export const DarkTheme = {
     Yellow: "#f9d26e",
     Orange: "#FEA947"
 }
+
+export const Modal = styled.main`
+    color: ${(props) => props.theme.DarkBlue};
+    background: ${(props) => props.theme.LightBlue};
+    padding: 20px;
+    border: 4px solid ${(props) => props.theme.Blue};
+    border-radius: 10px;
+    width: clamp(300px, 40vw, 40vw);
+    text-align: center;
+    display: flex;
+    align-items: center;
+    flex-direction:column;
+    h2{
+        margin: 1rem 0;
+    }
+    p{
+        margin: 10px 0 0 0;
+    }
+    input{
+        margin: 5px 0 1rem 0;
+        padding: 5px;
+        border-radius: 5px;
+        background-color: ${(props) => props.theme.LightBlue};
+        color: ${(props) => props.theme.DarkBlue};
+        border: 3px solid ;
+    }
+    button{
+        margin-top: 1rem;
+        text-align: center;
+    }
+`
 
 export const GlobalStyles = createGlobalStyle`
 *{
@@ -53,13 +84,36 @@ export const GlobalStyles = createGlobalStyle`
       }
       .custom-shape-divider-bottom-1639756025 {
         bottom: 0;
+        position: relative;
+        top: 5px;
         left: 0;
         width: 100%;
         overflow: hidden;
         line-height: 0;
         transform: rotate(180deg);
     }
-    
+    .counter{
+      margin: 0;
+      border: 4px solid;
+      border-radius: 5px;
+      font-size: clamp(30px, calc(1vh + 1rem), calc(1vh + 1rem));
+      display: flex;
+      flex-direction: row;
+      gap: 10px;
+      button{
+        font-size: clamp(30px, calc(1vh + 1rem), calc(1vh + 1rem));
+        background: transparent;
+        border: none;
+        padding-left: 15px;
+        padding-right: 15px;
+        color: ${(props) => props.theme.DarkBlue};
+        margin: 0 0 0 0;
+      }
+    }
+    .Product-Cart-Title{
+      font-size: clamp(2rem, calc(2vh + 2vw), calc(2vh + 2vw));
+      margin: 15px 0;
+    }
     .custom-shape-divider-bottom-1639756025 svg {
         position: relative;
         display: block;
@@ -68,9 +122,23 @@ export const GlobalStyles = createGlobalStyle`
         transform: rotateY(180deg);
     }
     
-    .custom-shape-divider-bottom-1639756025 .shape-fill {
-        fill: #093854;
-    }
+    .custom-shape-divider-bottom-1640116882 {
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      transform: rotate(180deg);
+  }
+  
+  .custom-shape-divider-bottom-1640116882 svg {
+      position: relative;
+      position: relative;
+        top: -2px;
+      display: block;
+      width: calc(100% + 1.3px);
+      height: 115px;
+      transform: rotateY(180deg);
+  }
+  
     .fa-bars, .fa-sign-out-alt{
       transform: scale(1.3);
     }
@@ -142,5 +210,23 @@ export const GlobalStyles = createGlobalStyle`
       border-radius: 10px;
       border: 3px solid;
       height: clamp(500px, 30vh, 30vh);
+    }
+    .backdrop{
+      position: fixed;
+      top: -110vh;
+      z-index: 100;
+      padding: 10px;
+      transition:.5s;
+      left: 0vw;
+      height: 100%;
+      width: 100%;
+      background: ${(props) => props.theme.Dark + 80};
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .backdrop.active{
+      left:0;
+      top:0;
     }
 `
