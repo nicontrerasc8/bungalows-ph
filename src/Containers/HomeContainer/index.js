@@ -91,8 +91,13 @@ const Landing = () => {
             <article>
                 <h1>Disfruta lo mejor de la playa en Punta Hermosa</h1>
                <div>
-                <StyledButton path="/bungalows" color={LightTheme.Orange} letra={LightTheme.Dark} texto={<span>Ver bungalows <i className="fas fa-home"></i></span>}/>
-                <StyledButton path="/tienda" color={LightTheme.Yellow} letra={LightTheme.Dark} texto={<span>Tienda <i className="fas fa-store"></i></span>}/>
+                    <StyledButton path="/bungalows" 
+                        color={LightTheme.Orange} 
+                        letra={LightTheme.Dark} 
+                        texto={<span>Ver bungalows 
+                        <i className="fas fa-home"></i>
+                        </span>}/>
+                    <StyledButton path="/tienda" color={LightTheme.Yellow} letra={LightTheme.Dark} texto={<span>Tienda <i className="fas fa-store"></i></span>}/>
                </div>
             </article>
             <iframe src="https://www.youtube.com/embed/cep1nKmPP-k" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen/>
