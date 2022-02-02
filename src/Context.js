@@ -5,7 +5,7 @@ const useAppContext = () => useContext(AppContext)
 
 export const AppContextProvider = ({children}) => {
     const [Bungalow, setBungalow] = useState("Selecciona el bungalow")
-    const [WhatsAppLink, setWhatsAppLink] = useState("https://wa.me/51949161510")
+    const [WhatsAppLink, setWhatsAppLink] = useState("https://wa.me/51998855069")
     const [Pedidos, setPedidos] = useState([])
     const [IsLightTheme, setIsLightTheme] = useState(true)
 
