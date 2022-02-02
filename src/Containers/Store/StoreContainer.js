@@ -609,7 +609,7 @@ const StoreContaniner = () => {
                             </button>
                         </span>
                         <p style={{fontSize:"calc(1vw + 1rem)"}}>Precio total: S/.{Math.round(ItemPrice * 10 * Count) / 10}</p>
-                        <StyledButton texto="Comprar" letra={LightTheme.Dark} color={LightTheme.Orange} hyperLink={`https://api.whatsapp.com/send?phone=51949161510&text=${`¡Hola! vengo de la web de bungalows PH. Me gustaría ordenar ${Count} unidades de ${ItemText} de ${ItemSize}.`}`}/>
+                        <StyledButton texto="Comprar" letra={LightTheme.Dark} color={LightTheme.Orange} hyperLink={`https://api.whatsapp.com/send?phone=51998855069&text=${`¡Hola! vengo de la web de bungalows PH. Me gustaría ordenar ${Count} unidades de ${ItemText} de ${ItemSize}.`}`}/>
                 </Modal>
             </Backdrop>
             {
