@@ -8,8 +8,8 @@ export default function ScrollToTop() {
 
   useEffect(() => {
     window.scrollTo(0, 0);
-    if(pathname == "/green-ocean-coffee" || pathname == "/carrito") setWhatsAppLink("https://wa.me/51949161510")
-    else setWhatsAppLink("https://wa.me/51949161510")
+    if(pathname == "/green-ocean-coffee" || pathname == "/carrito") setWhatsAppLink("https://wa.me/51998855069")
+    else setWhatsAppLink("https://wa.me/51998855069")
   }, [pathname]);
 
   return null;
