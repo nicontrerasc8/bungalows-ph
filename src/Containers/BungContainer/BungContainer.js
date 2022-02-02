@@ -168,7 +168,7 @@ const BungContainer = () => {
                            title="YouTube video player" 
                            frameborder="0" 
                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen/>
-                            <StyledButton hyperLink={`https://api.whatsapp.com/send?phone=51949161510&text=${`¡Hola!, me gustaría saber los precios del bungalow ${data.Number}.`}`} texto="Consulta los precios" color={LightTheme.Orange} letra={LightTheme.Dark}/>
+                            <StyledButton hyperLink={`https://api.whatsapp.com/send?phone=51998855069&text=${`¡Hola!, me gustaría saber los precios del bungalow ${data.Number}.`}`} texto="Consulta los precios" color={LightTheme.Orange} letra={LightTheme.Dark}/>
                             <p>Incluye:</p>
                                 <ul>
                                 {data.ul && data.ul.map((info, id) => {
