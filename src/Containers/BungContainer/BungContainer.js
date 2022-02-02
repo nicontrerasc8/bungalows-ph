@@ -144,7 +144,7 @@ const BungContainer = () => {
                     onChange={(e) => setValorSalida(e.target.value)}   
                     />
                     <StyledButton 
-                    hyperLink={`https://api.whatsapp.com/send?phone=51949161510&text=${`¡Hola!, me gustaría reservar el bungalow ${DialogValue} desde el ${ValorLLegada} hasta el ${ValorSalida}.`}`}
+                    hyperLink={`https://api.whatsapp.com/send?phone=51998855069&text=${`¡Hola!, me gustaría reservar el bungalow ${DialogValue} desde el ${ValorLLegada} hasta el ${ValorSalida}.`}`}
                     texto="Haz la reserva"
                     color={LightTheme.Orange}
                     letra={LightTheme.Dark}
